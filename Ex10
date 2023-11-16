@@ -1,0 +1,72 @@
+ Certainly! Below is the Java code based on the given specifications:
+
+```java
+class Product {
+    String name;
+    double price;
+    String coupon;
+
+    public Product(String name, double price, String coupon) {
+        this.name = name;
+        this.price = price;
+        this.coupon = coupon;
+    }
+}
+
+class Validator {
+    public String validateCoupon(Product p) throws InvalidCouponException {
+        String[] couponParts = p.coupon.split("-");
+        if (couponParts.length != 2) {
+            throw new InvalidCouponException("Invalid Coupon");
+        }
+
+        String couponName = couponParts[0];
+        int discountValue;
+        try {
+            discountValue = Integer.parseInt(couponParts[1]);
+        } catch (NumberFormatException e) {
+            throw new InvalidCouponException("Invalid Coupon");
+        }
+
+        if (!couponName.equals(p.name) || discountValue < 10 || discountValue > 25) {
+            throw new InvalidCouponException("Invalid Coupon");
+        }
+
+        return "Valid Coupon";
+    }
+
+    public double netPrice(Product p) {
+        try {
+            validateCoupon(p);
+            return p.price - (p.price * (Double.parseDouble(p.coupon.split("-")[1]) / 100.0));
+        } catch (InvalidCouponException e) {
+            return p.price;
+        }
+    }
+}
+
+class InvalidCouponException extends Exception {
+    public InvalidCouponException(String msg) {
+        super(msg);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Product obj = new Product("IPhone", 25000, "IPhone-10");
+        Validator val = new Validator();
+
+        try {
+            String valCoupon = val.validateCoupon(obj);
+            double price = val.netPrice(obj);
+
+            System.out.println("valCoupon = " + valCoupon);
+            System.out.println("price = " + price);
+        } catch (InvalidCouponException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+This Java code defines the required classes (Product, Validator, InvalidCouponException) and thei given specifications. The sample input provided creates an instance of the Product class, a Validator instance, and then calls the required methods to demonstrate the functionality.
