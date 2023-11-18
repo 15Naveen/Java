@@ -1,0 +1,53 @@
+Your task here is to implement Java code based on the following specifications. Note that your code should match the specifications in a precise manner. Consider default visibility of classes, data fields, and methods unless mentioned.
+
+Specifications
+class definitions: 
+ class Mobile:
+   data member:
+﻿﻿      HashMap<String, ArrayList<String>> mobileList = new Hashmap<>()
+﻿   method definition:
+      addMobile(String company, String model)
+         return type: String
+         visibility: public  
+
+      getModels(String company)
+         return type: ArrayList<String> 
+         visibility: public    
+         
+      buyMobile(String company, String model)
+         return type: String
+         visibility: public          
+Task
+Class Mobile
+
+-define the object of HashMap<String, ArrayList<String>> with variable name mobileList.
+
+The String defines the name of the company and the Arraylist will have list of models.
+Implement the below methods for this class:
+
+-String addMobile(String company, String model):
+
+Write a code to add a company with its model.
+If the company does not exists then create it with a new String list and add the model.
+Update the String list with the new model if the company already exists  
+ return "model successfully added" after performing the above operations
+-ArrayList<String> getModel(String company):
+
+Write a code to get the Model list.
+return null if the given company doesn't exist or doesn't have any model, else return the String list of all the models.
+-String buyMobile(String company, String model):
+
+Write a code to buy a mobile.
+Remove the mobile model from the list according to the model purchased. In case there are two same models then remove one and return the message "mobile sold successfully
+Return a message "item not available" if the mobile or model is not present in the list
+Sample Input
+
+Mobile obj = new Mobile();
+obj.addMobile("Oppo", "K3");
+obj.getModels("Oppo");
+obj.buyMobile("Oppo", "K3");
+Sample Output
+
+model successfully added
+[K3]
+mobile sold successfully
