@@ -1,0 +1,51 @@
+ import java.util.ArrayList;
+import java.util.HashMap;
+
+class Mobile {
+    HashMap<String, ArrayList<String>> mobileList = new HashMap<>();
+
+    public String addMobile(String company, String model) {
+        if (!mobileList.containsKey(company)) {
+            mobileList.put(company, new ArrayList<>());
+        }
+
+        ArrayList<String> models = mobileList.get(company);
+        if (!models.contains(model)) {
+            models.add(model);
+            return "model successfully added";
+        } else {
+            return "model already exists";
+        }
+    }
+
+    public ArrayList<String> getModels(String company) {
+        if (mobileList.containsKey(company)) {
+            return mobileList.get(company);
+        } else {
+            return null;
+        }
+    }
+
+    public String buyMobile(String company, String model) {
+        if (mobileList.containsKey(company)) {
+            ArrayList<String> models = mobileList.get(company);
+            if (models.contains(model)) {
+                models.remove(model);
+                return "mobile sold successfully";
+            } else {
+                return "item not available";
+            }
+        } else {
+            return "item not available";
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Mobile obj = new Mobile();
+        System.out.println(obj.addMobile("Oppo", "K3"));
+        System.out.println(obj.getModels("Oppo"));
+        System.out.println(obj.buyMobile("Oppo", "K3"));
+    }
+}
