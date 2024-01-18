@@ -1,0 +1,44 @@
+package com.exception1;
+
+/*Exercise 1:  Validate the age of a person and display proper message by using user defined 
+exception. Age of a person should be above 15.........*/
+
+public class ExceeptionEX1  extends AgeOfThePerson{
+    public void validateAge(int age)
+    {
+    	try
+    	{
+    		if(age> 15) 
+    		{
+    	      System.out.println("Age of a person is above 15");
+    		}
+    		else
+    		{
+    			AgeOfThePerson a= new AgeOfThePerson();
+    			throw a;
+    		}
+    	}
+    	catch(AgeOfThePerson e)
+    	{
+    		System.out.println("tyui"+e.getMessage());
+    	}
+	}
+	public static void main(String[] args) {
+		ExceeptionEX1 e= new ExceeptionEX1();
+		e.validateAge(12);
+	}
+}
+
+package com.exception1;
+
+public class AgeOfThePerson extends Exception {
+	public String getMessage()
+	{
+		return "Age of the person is less than 15";
+	}
+	
+	public AgeOfThePerson() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
